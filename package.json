@@ -1,0 +1,19 @@
+{
+  "name": "domotics",
+  "version": "1.0.0",
+  "description": "Classroom control project for domotics class",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "johnny-five": "^0.13.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
