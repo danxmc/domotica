@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Domotics - WebSockets</title>
+    <script src="./socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1><span class="fa fa-home"></span> Dashboard</h1>
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        </div>
+
+        <div class="row">
+            <!-- LOCAL INFORMATION -->
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3><span class="fa fa-user"></span> Local</h3>
+
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="well">
+                    <button id="lightBtn" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <script src="./assets/scripts/script.js"></script>
+</body>
+
+</html>
