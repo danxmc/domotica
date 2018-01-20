@@ -1,5 +1,5 @@
 // Make connection
-let socket = io.connect(window.location.hostname + ':' + 3000);
+let socket = io.connect(window.location.hostname + ':' + 80);
 
 // Emit events
 $('#lightBtn').on('click', (e) => {

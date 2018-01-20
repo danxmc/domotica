@@ -1,2 +1,2 @@
 # Domotics
-Classrom control via WebSockets and Arduino
+Classroom control project for domotics class
