@@ -1,0 +1,24 @@
+#lightBtn{
+    position: absolute;
+   top: 30%;
+   left: 40%;
+   width: 60px;
+}
+#lightBtn2{
+    position: absolute;
+   top: 30%;
+   left: 45%;
+   width: 100px;
+}
+#lightBtn3{
+    position: absolute;
+   top: 30%;
+   left: 53%;
+   width: 100px;
+}
+.image{
+position: absolute;
+top: 25%;
+left: 25%;
+width: 500px;
+}

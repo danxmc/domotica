@@ -7,36 +7,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Domotics - WebSockets</title>
     <script src="./socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="./assets/css/domotica.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="showSection('')">
     <div class="container">
-
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Tu casa</a>
+              </div>
+              <ul class="nav navbar-nav" id="menu">
+                <li ><a href="#" >Admin</a></li>
+                <li ><a href="#"  >Luces</a></li>
+                <li ><a href="#"  >LiveStream</a></li>
+                <li ><a href="#"  >Registro</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+              </ul>
+            </div>
+          </nav>
         <div class="page-header text-center">
             <h1><span class="fa fa-home"></span> Dashboard</h1>
-            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
         </div>
 
-        <div class="row">
-            <!-- LOCAL INFORMATION -->
-            <div class="col-sm-6">
-                <div class="well">
-                    <h3><span class="fa fa-user"></span> Local</h3>
-
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-
-                </div>
+        <p id="prueba"></p>
+        <div class="row section" id="Admin">
+            <p>sección admin</p>
+        </div>
+        <div class="row section" id="Luces">
+            <div class="portrait">
+                <img src="/assets/images/classroom.jpg"  class="image">
+                <button id="lightBtn" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
+                <button id="lightBtn2" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
+                <button id="lightBtn3" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
             </div>
-            <div class="col-sm-6">
-                <div class="well">
-                    <button id="lightBtn" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
-                </div>
-            </div>
+            <p>sección luces</p>
+        </div>
+        <div class="row section" id="LiveStream">
+            <p>sección livestream</p>
+        </div>
+        <div class="row section" id="Registro">
+            <p>sección registro</p>
         </div>
 
     </div>
@@ -44,6 +59,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     <script src="./assets/scripts/script.js"></script>
+    <script>
+   
+  $("#menu a").click(function(){ 
+    showSection(this.innerHTML);
+});
+    function showSection(valor){
+        var clases = document.getElementsByClassName("section");
+        for(var i=0; i<clases.length; i++){
+            if(clases[i].id!=valor){
+                document.getElementById(clases[i].id).style.display="none";
+            }else{
+                document.getElementById(clases[i].id).style.display="inline";
+            }
+        }
+    }
+    </script>
+    
 </body>
 
 </html>
