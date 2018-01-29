@@ -1,3 +1,4 @@
+let User = require('../models/user');
 module.exports = (app, passport) => {
     // HOME PAGE
     app.get('/', (req, res) => {
@@ -39,10 +40,18 @@ module.exports = (app, passport) => {
     // PROFILE SECTION
     // Protected view, needs to be logged in to visit, uses middleware
     app.get('/profile', isLoggedIn, (req, res) => {
+        User.find({}).exec((err, users) => {
+            if (err) throw err;
+            res.render('profile.ejs', { 
+                users: users,
+                user: req.user 
+            });
+        }
+        /*
         res.render('profile.ejs', {
             // get the user out of session and pass to template
             user: req.user
-        });
+        });*/
     });
 
     // LOGOUT
