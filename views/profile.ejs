@@ -11,27 +11,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body onload="showSection('')">
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">Tu casa</a>
-              </div>
-              <ul class="nav navbar-nav" id="menu">
-                <li ><a href="#" >Admin</a></li>
-                <li ><a href="#"  >Luces</a></li>
-                <li ><a href="#"  >LiveStream</a></li>
-                <li ><a href="#"  >Registro</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-              </ul>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Tu casa</a>
+                </div>
+                <ul class="nav navbar-nav" id="menu">
+                    <li>
+                        <a href="#">Admin</a>
+                    </li>
+                    <li>
+                        <a href="#">Luces</a>
+                    </li>
+                    <li>
+                        <a href="#">LiveStream</a>
+                    </li>
+                    <li>
+                        <a href="#">Registro</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-user"></span> Perfil</a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    </li>
+                </ul>
             </div>
-          </nav>
+        </nav>
         <div class="page-header text-center">
-            <h1><span class="fa fa-home"></span> Dashboard</h1>
+            <h1>
+                <span class="fa fa-home"></span> Dashboard</h1>
         </div>
 
         <p id="prueba"></p>
@@ -40,7 +56,7 @@
         </div>
         <div class="row section" id="Luces">
             <div class="portrait">
-                <img src="/assets/images/classroom.jpg"  class="image">
+                <img src="/assets/images/classroom.jpg" class="image">
                 <button id="lightBtn" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
                 <button id="lightBtn2" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
                 <button id="lightBtn3" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
@@ -54,39 +70,57 @@
             <p>sección registro</p>
         </div>
 
+        <div clas="row ">
+            <div clas="well col-md-6">
+                <table class="table ">
+                        <tr>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Rol</th>
+                            <th>Delete</th>
+                        </tr>
+                        <% users.forEach(function (user) { %>
+                            <tr>
+                                <td>
+                                    <%= user.local.name %>
+                                </td>
+                                <td>
+                                    <%= user.local.email %>
+                                </td>
+                                <td>
+                                    <%= user.local.role %>
+                                </td>
+                                <td>
+                                    <button type="button" id="delete"></button>
+                                </td>
+                            </tr>
+
+                            <% }) %>
+                </table>
+            </div>
+        </div>
     </div>
-    <% users.forEach(function (user) { %>
-        <li>
-            <p>
-                <%= user._id %>
-            </p>
-            <p>
-                <%= user.local.email %>
-            </p>
-        </li>
-        
-    <% }) %>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
     <script src="./assets/scripts/script.js"></script>
     <script>
-   
-  $("#menu a").click(function(){ 
-    showSection(this.innerHTML);
-});
-    function showSection(valor){
-        var clases = document.getElementsByClassName("section");
-        for(var i=0; i<clases.length; i++){
-            if(clases[i].id!=valor){
-                document.getElementById(clases[i].id).style.display="none";
-            }else{
-                document.getElementById(clases[i].id).style.display="inline";
+
+        $("#menu a").click(function () {
+            showSection(this.innerHTML);
+        });
+        function showSection(valor) {
+            var clases = document.getElementsByClassName("section");
+            for (var i = 0; i < clases.length; i++) {
+                if (clases[i].id != valor) {
+                    document.getElementById(clases[i].id).style.display = "none";
+                } else {
+                    document.getElementById(clases[i].id).style.display = "inline";
+                }
             }
         }
-    }
     </script>
-    
+
 </body>
 
 </html>
