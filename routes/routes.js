@@ -46,7 +46,7 @@ module.exports = (app, passport) => {
                 users: users,
                 user: req.user 
             });
-        }
+        });
         /*
         res.render('profile.ejs', {
             // get the user out of session and pass to template
