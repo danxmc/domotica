@@ -42,9 +42,9 @@ module.exports = (app, passport) => {
     app.get('/profile', isLoggedIn, (req, res) => {
         User.find({}).exec((err, users) => {
             if (err) throw err;
-            res.render('profile.ejs', { 
+            res.render('profile.ejs', {
                 users: users,
-                user: req.user 
+                user: req.user
             });
         });
         /*

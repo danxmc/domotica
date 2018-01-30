@@ -49,6 +49,7 @@ module.exports = (passport) => {
 
                             newUser.local.email = email;
                             newUser.local.password = newUser.generateHash(password);
+                            newUser.local.role = "ROLE_USER";
 
                             newUser.save((err) => {
                                 if (err) {
@@ -74,6 +75,7 @@ module.exports = (passport) => {
                             let user = req.user;
                             user.local.email = email;
                             user.local.password = user.generateHash(password);
+                            user.local.role = "ROLE_USER";
                             user.save((err) => {
                                 if (err) {
                                     return done(err);
@@ -128,4 +130,4 @@ module.exports = (passport) => {
         }
     ));
 
-};
+}

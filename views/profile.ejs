@@ -70,6 +70,7 @@
             <p>sección registro</p>
         </div>
 
+        <% if(user.local.role == "ROLE_ADMIN") { %>
         <div clas="row ">
             <div clas="well col-md-6">
                 <table class="table ">
@@ -79,7 +80,7 @@
                             <th>Rol</th>
                             <th>Delete</th>
                         </tr>
-                        <% users.forEach(function (user) { %>
+                        <% users.forEach((user) => { %>
                             <tr>
                                 <td>
                                     <%= user.local.name %>
@@ -95,10 +96,11 @@
                                 </td>
                             </tr>
 
-                            <% }) %>
+                        <% }) %>
                 </table>
             </div>
         </div>
+        <% } %>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
