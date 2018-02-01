@@ -10,6 +10,7 @@ let morgan = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let session = require('express-session');
+let favicon = require('serve-favicon');
 const keys = require('./config/keys');
 
 // Create board instance
@@ -30,6 +31,9 @@ mongoose.connect(keys.mongodb.url, {
 
 // passport configuration
 require('./config/passport')(passport);
+
+// use favicon
+app.use(favicon(__dirname + '/public/assets/images/favicon.ico'));
 
 // Set the app instance to read the public directory
 app.use(express.static(__dirname + '/public'));
