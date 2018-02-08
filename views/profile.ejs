@@ -51,56 +51,64 @@
         </div>
 
         <p id="prueba"></p>
-        <div class="row section" id="Admin">
-            <p>sección admin</p>
-        </div>
-        <div class="row section" id="Luces">
-            <div class="portrait">
-                <img src="/assets/images/classroom.jpg" class="image">
-                <button id="lightBtn" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
-                <button id="lightBtn2" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
-                <button id="lightBtn3" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
-            </div>
-            <p>sección luces</p>
-        </div>
-        <div class="row section" id="LiveStream">
-            <p>sección livestream</p>
-        </div>
-        <div class="row section" id="Registro">
-            <p>sección registro</p>
-        </div>
+        <% if(true) { %>
+            <div class="row section" id="Admin">
+                <div clas="row ">
+                    <div clas="well col-md-6">
+                        <table class="table table-striped" style="width:70%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% users.forEach((user) => { %>
+                                    <tr>
+                                        <td>
+                                            <%= user.local.name %>
+                                        </td>
+                                        <td>
+                                            <%= user.local.email %>
+                                        </td>
+                                        <td>
+                                            <%= user.local.role %>
+                                        </td>   
+                                        <td>
+                                            <form action="/delete" method="POST">
+                                                <input class="hidden" value="<%= user._id %>">
+                                            <button type="submit" id="delete"><span class="fa fa-trash-alt"></span></button>
+                                        </form>
+                                        </td>
+                                    </tr>
 
-        <% if(user.local.role == "ROLE_ADMIN") { %>
-        <div clas="row ">
-            <div clas="well col-md-6">
-                <table class="table ">
-                        <tr>
-                            <th>Name</th>
-                            <th>email</th>
-                            <th>Rol</th>
-                            <th>Delete</th>
-                        </tr>
-                        <% users.forEach((user) => { %>
-                            <tr>
-                                <td>
-                                    <%= user.local.name %>
-                                </td>
-                                <td>
-                                    <%= user.local.email %>
-                                </td>
-                                <td>
-                                    <%= user.local.role %>
-                                </td>
-                                <td>
-                                    <button type="button" id="delete"></button>
-                                </td>
-                            </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                        <% }) %>
-                </table>
             </div>
-        </div>
-        <% } %>
+            <% } %>
+                <div class="row section" id="Luces">
+                    <div class="portrait">
+                        <img src="/assets/images/classroom.jpg" class="image">
+                        <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
+                        <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
+                        <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
+                    </div>
+                    <p>sección luces</p>
+                </div>
+                <div class="row section" id="LiveStream">
+                    <p>sección livestream</p>
+                </div>
+                <div class="row section" id="Registro">
+                    <p>sección registro</p>
+                </div>
+
+
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -109,7 +117,7 @@
     <script>
 
         $("#menu a").click(function () {
-            showSection(this.innerHTML);
+            showSection(this.innerHTML); 
         });
         function showSection(valor) {
             var clases = document.getElementsByClassName("section");

@@ -1,16 +1,16 @@
-#lightBtn{
+[id='0']{
     position: absolute;
    top: 30%;
    left: 40%;
    width: 60px;
 }
-#lightBtn2{
+[id='1']{
     position: absolute;
    top: 30%;
    left: 45%;
    width: 100px;
 }
-#lightBtn3{
+[id='2']{
     position: absolute;
    top: 30%;
    left: 53%;
