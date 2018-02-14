@@ -13,7 +13,7 @@ $(".lightBtn").on('click', (e) => {
     // Emit event to server with the according status
     socket.emit('toggleLight', {
         status: status,
-        ledno: btn
+        btnNum: btn
     });
 });
 /*
@@ -32,13 +32,13 @@ $('#lightBtn').on('click', (e) => {
 
 // Listen for events
 socket.on('toggleBtn', (data) => {
-    console.log('listener:', data.status);
-    console.log('listener:', data.btn);
+    console.log('listener status:', data.status);
+    console.log('listener btn:', data.btnNum);
     if (data.status == true) {
-        $('#' + data.btn).attr('aria-pressed', 'true');
-        $('#' + data.btn).addClass('active');
+        $('#' + data.btnNum).attr('aria-pressed', 'true');
+        $('#' + data.btnNum).addClass('active');
     } else {
-        $('#' + data.btn).attr('aria-pressed', 'false');
-        $('#' + data.btn).removeClass('active');
+        $('#' + data.btnNum).attr('aria-pressed', 'false');
+        $('#' + data.btnNum).removeClass('active');
     }
 });
