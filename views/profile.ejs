@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body onload="showSection('')">
+<body <% if(user.local.role=="ROLE_ADMIN"){ %> onload="showSection('Admin')" <% } else{ %> onload="showSection('Luces')" <% } %> >
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -55,7 +55,7 @@
         <p id="prueba"></p>
         <!-- el if true es pq la comprobación del admin no estaba disponible-->
         <% if(user.local.role=="ROLE_ADMIN") { %>
-            <div class="row section" id="Admin">
+            <div class="row section" id="Admin" style="display:inline">
                 <div class="row">
                     <h1>Usuario</h1>
                     <form action="/signup" method="GET">
@@ -101,7 +101,8 @@
 
             </div>
             <% } %>
-                <div class="row section" id="Luces">
+           
+                <div class="row section" id="Luces" >
                     <div class="portrait">
                         <img src="/assets/images/classroom.jpg" class="image">
                         <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
