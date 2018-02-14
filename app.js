@@ -77,11 +77,13 @@ io = io.listen(server);
 board.on("ready", () => {
     // Connection message in the console
     console.log('ARDUINO BOARD READY STATE: TRUE');
+    /*
     leds[0] = new five.Led(13);
     leds[1] = new five.Led(10);
     leds[2] = new five.Led(11);
     leds[3] = new five.Led(12);
-
+*/
+led =new five.Led(13);
     // Display a conection message
     io.on('connection', (socket) => {
 
@@ -95,7 +97,8 @@ board.on("ready", () => {
         socket.on('toggleLight', (data) => {
             let no=data.btn;
             // Checks the status sent by the toggleLight event
-            data.status ? leds[no].on() : led[no].off();
+            //data.status ? leds[no].on() : led[no].off();
+            data.status ? led.on() : led.off();
             // Emit toggleBtn event on all devices except
             // the one that made the original toggleLight event
             socket.broadcast.emit('toggleBtn', data);

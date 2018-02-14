@@ -20,12 +20,12 @@ module.exports = (passport) => {
 
     // LOCAL SIGNUP
     passport.use('local-signup', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
-            passwordField: 'password',
-            // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-            passReqToCallback: true
-        },
+        // by default, local strategy uses username and password, we will override with email
+        usernameField: 'email',
+        passwordField: 'password',
+        // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        passReqToCallback: true
+    },
         (req, email, password, done) => {
             if (email) {
                 // Use lower-case e-mails to avoid case-sensitive e-mail matching
@@ -95,12 +95,12 @@ module.exports = (passport) => {
 
     // LOCAL LOGIN
     passport.use('local-login', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
-            passwordField: 'password',
-            // allows us to pass back the entire request to the callback
-            passReqToCallback: true
-        },
+        // by default, local strategy uses username and password, we will override with email
+        usernameField: 'email',
+        passwordField: 'password',
+        // allows us to pass back the entire request to the callback
+        passReqToCallback: true
+    },
         // callback with email and password from our form
         (req, email, password, done) => {
             if (email) {
