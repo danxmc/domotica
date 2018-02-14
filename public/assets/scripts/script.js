@@ -42,3 +42,7 @@ socket.on('toggleBtn', (data) => {
         $('#' + data.btnNum).removeClass('active');
     }
 });
+
+socket.on('inputEvent', (data) => {
+    console.log(data);
+});

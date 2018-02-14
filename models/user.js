@@ -6,7 +6,7 @@ let userSchema = mongoose.Schema({
     local: {
         email: String,
         password: String,
-        role:String
+        role: String
     }
 });
 
