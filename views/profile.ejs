@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body <% if(user.local.role=="ROLE_ADMIN"){ %> onload="showSection('Admin')" <% } else{ %> onload="showSection('Luces')" <% } %> >
+<body <% if(user.local.role=="ROLE_ADMIN") { %>
+    onload="showSection('Admin')"
+    <% } else { %>
+    onload="showSection('Luces')"
+    <% } %>
+    >
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -20,7 +25,7 @@
                     <a class="navbar-brand" href="#">Tu casa</a>
                 </div>
                 <ul class="nav navbar-nav" id="menu">
-                        <% if(user.local.role=="ROLE_ADMIN") { %>
+                        <% if(user.local.role == "ROLE_ADMIN") { %>
                     <li>
                         <a href="#">Admin</a>
                     </li>
@@ -131,8 +136,8 @@
             showSection(this.innerHTML);
         });
         function showSection(valor) {
-            var clases = document.getElementsByClassName("section");
-            for (var i = 0; i < clases.length; i++) {
+            let clases = document.getElementsByClassName("section");
+            for (let i = 0; i < clases.length; i++) {
                 if (clases[i].id != valor) {
                     document.getElementById(clases[i].id).style.display = "none";
                 } else {
