@@ -46,6 +46,7 @@ socket.on('toggleBtn', (data) => {
 socket.on('inputEvent', (data) => {
     let dt = new Date();
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    $('#logRoom').append("Se ingresó al cuarto " + time);
+    document.getElementById('logRoom').innerHTML = "";
+    $('#logRoom').append("<p>Se ingresó al cuarto " + time + "</p>");
     console.log(data);
 });
