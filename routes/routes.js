@@ -60,16 +60,17 @@ module.exports = (app, passport) => {
         res.redirect('/');
     });
 
-    app.post('/delete', isLoggedIn, (req, res)=> {
-        User.find({ user: req.user._id }).exec((err, user) => {
-            if(err) throw err;
-            if(user.local.role == "ROLE_ADMIN"){
-                let id = get;
-                User.findByIdAndRemove({ id : req.user._id });
-            }else{
-                res.render(profile.ejs, { message: req.flash("adminMessage", "You need to be an admin in order to perform this functions") })
-            }
-        });
+    // DELETE USER
+    app.post('/delete/:_id', isLoggedIn, (req, res) => {
+        // Check if session user is admin
+        if (req.user.local.role == "ROLE_ADMIN") {
+            User.findByIdAndRemove(req.params._id, (err, res) => {
+                if (err) throw err;
+            });
+        } else {
+            res.render('profile.ejs', { message: req.flash("adminMessage", "You need to be an admin in order to perform this function") });
+        }
+        res.redirect('/profile');
     });
 };
 

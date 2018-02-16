@@ -120,10 +120,10 @@ board.on("ready", () => {
             let data = {
                 value: value
             };
+            //console.log(value);
             if (value == 1) {
                 // if high
                 io.sockets.emit('inputEvent', data)
-                console.log(value);
             } else {
                 // if low
             }

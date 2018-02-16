@@ -48,5 +48,5 @@ socket.on('inputEvent', (data) => {
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     document.getElementById('logRoom').innerHTML = "";
     $('#logRoom').append("<p>Se ingresó al cuarto " + time + "</p>");
-    console.log(data);
+    //console.log(data);
 });

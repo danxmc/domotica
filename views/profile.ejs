@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body <% if(user.local.role=="ROLE_ADMIN") { %>
+<body <% if(user.local.role == "ROLE_ADMIN") { %>
     onload="showSection('Admin')"
     <% } else { %>
     onload="showSection('Luces')"
@@ -80,17 +80,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% users.forEach((user) => { %>
+                                <% users.forEach((delUser) => { %>
                                     <tr>
                                         <td>
-                                            <%= user.local.email %>
+                                            <%= delUser.local.email %>
                                         </td>
                                         <td>
-                                            <%= user.local.role %>
+                                            <%= delUser.local.role %>
                                         </td>
                                         <td>
-                                            <form action="/delete" method="POST">
-                                                <input class="hidden" value="<%= user._id %>">
+                                            <form action="/delete/<%= delUser._id %>" method="POST">
                                                 <button type="submit" id="delete">
                                                     <span class="fa fa-trash"></span>
                                                 </button>
@@ -128,7 +127,8 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./assets/scripts/script.js"></script>
     <script>
 
