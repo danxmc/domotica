@@ -58,16 +58,11 @@
         </div>
 
         <p id="prueba"></p>
-        <!-- el if true es pq la comprobación del admin no estaba disponible -->
         <% if(user.local.role == "ROLE_ADMIN") { %>
             <div class="row section" id="Admin" style="display:inline">
                 <div class="row">
                     <h1>Usuario</h1>
-                    <form action="/signup" method="GET">
-                        <button type="submit" id="add" class="pull-right ">
-                            <span class="fa fa-plus-circle"></span>
-                        </button>
-                    </form>
+                    <a class="btn btn-outline-primary" href="./signup" role="button">Add User <span class="fa fa-plus-circle"></span></a>
                 </div>
                 <div clas="row ">
                     <div clas="well col-md-6">
@@ -97,33 +92,31 @@
                                         </td>
                                     </tr>
 
-                                    <% }) %>
+                                <% }) %>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
             </div>
-            <% } %>
+        <% } %>
            
-                <div class="row section" id="Luces" >
-                    <div class="portrait">
-                        <img src="/assets/images/classroom.jpg" class="image">
-                        <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
-                        <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
-                        <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
-                    </div>
-                    <p>sección luces</p>
+            <div class="row section" id="Luces" >
+                <div class="portrait">
+                    <img src="/assets/images/classroom.jpg" class="image">
+                    <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz</button>
+                    <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Proyector</button>
+                    <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Pantalla</button>
                 </div>
-                <div class="row section" id="LiveStream">
-                    <p>sección livestream</p>
+                <p>sección luces</p>
+            </div>
+            <div class="row section" id="LiveStream">
+                <p>sección livestream</p>
+            </div>
+            <div class="row section" id="Registro">
+                <div class="col-md-offset-2 col-md-8 well" id="logRoom">
                 </div>
-                <div class="row section" id="Registro">
-                    <div class="col-md-offset-2 col-md-8 well" id="logRoom">
-                    </div>
-                </div>
-
-
+            </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -132,7 +125,7 @@
     <script src="./assets/scripts/script.js"></script>
     <script>
 
-        $("#menu a").click(function () {
+        $("#menu a").click(() => {
             showSection(this.innerHTML);
         });
         function showSection(valor) {
