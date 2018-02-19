@@ -77,15 +77,23 @@ io = io.listen(server);
 board.on("ready", () => {
     // Connection message in the console
     console.log('ARDUINO BOARD READY STATE: TRUE');
-    let led = new five.Pin(13);
-    //led = new five.Led(13);
-    /*
-    leds[0] = new five.Led(13);
-    leds[1] = new five.Led(10);
-    leds[2] = new five.Led(11);
-    leds[3] = new five.Led(12);
-    */
+    //let led = new five.Pin(13);
+    let pinArray = [];
+    pinArray[0] = new five.Pin(12);
+    pinArray[1] = new five.Pin(11);
+    pinArray[2] = new five.Pin(10);
+
     let inputPin = new five.Pin(2);
+
+
+    // Initialize the RGB LED
+    var ledRGB = new five.Led.RGB({
+        pins: {
+            red: 6,
+            green: 5,
+            blue: 3
+        }
+    });
 
     // Display a conection message
     io.on('connection', (socket) => {
@@ -101,20 +109,29 @@ board.on("ready", () => {
         socket.on('toggleLight', (data) => {
             let no = data.btnNum;
             // Checks the status sent by the toggleLight event
-            data.status ? led.high() : led.low();
-           // data.status ? five.Pin.write(led, 1) : five.Pin.write(led, 0);
-            led.query((state) => {
+            //data.status ? led.high() : led.low();
+            // data.status ? five.Pin.write(led, 1) : five.Pin.write(led, 0);
+            pinArray[no].query((state) => {
                 console.log(state);
             });
             //data.status ? led.on() : led.off();
 
-            //data.status ? leds[no].on() : led[no].off();
+            data.status ? pinArray[no].high() : pinArray[no].low();
 
             // Emit toggleBtn event on all devices except the one that made the original toggleLight event
             socket.broadcast.emit('toggleBtn', data);
             console.log(data);
         });
 
+        //RGB control
+        socket.on('RGBcontrol', (data)=>{ 
+            let color = data.hex;
+            console.log(data.hex);
+            ledRGB.on();
+            ledRGB.color(color);
+        });
+
+        
         //Reads input pin
         inputPin.read((error, value) => {
             let data = {

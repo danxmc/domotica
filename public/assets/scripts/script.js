@@ -2,6 +2,7 @@
 let socket = io.connect(window.location.hostname + ':' + 80);
 
 // Emit events
+//Light emitter event
 $(".lightBtn").on('click', (e) => {
     e.preventDefault;
     let btn = event.target.id;
@@ -16,6 +17,20 @@ $(".lightBtn").on('click', (e) => {
         btnNum: btn
     });
 });
+//RGB control event
+$(".RGBcontrol").on('click', (e) => {
+    e.preventDefault;
+
+    let btnRGB = document.getElementById("colorpicker").value;
+    let hexvals = btnRGB.split("#");
+    let hexval = hexvals[1].match(/.{1,2}/g);
+    let color = "#" + (255 - (parseInt(hexval[0], 16))).toString(16) + (255 - (parseInt(hexval[1], 16))).toString(16) + (255 - (parseInt(hexval[2], 16))).toString(16);
+
+    //console.log('color: ' + color);
+    socket.emit('RGBcontrol', {
+        hex: color
+    })
+})
 /*
 $('#lightBtn').on('click', (e) => {
     e.preventDefault;
