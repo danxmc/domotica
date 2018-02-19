@@ -25,7 +25,17 @@ $("#colorPicker").on('change', (e) => {
     let btnRGB = document.getElementById("colorPicker").value;
     let hexvals = btnRGB.split("#");
     let hexval = hexvals[1].match(/.{1,2}/g);
-    let color = "#" + (255 - (parseInt(hexval[0], 16))).toString(16) + (255 - (parseInt(hexval[1], 16))).toString(16) + (255 - (parseInt(hexval[2], 16))).toString(16);
+    let color ="#";
+    hexval.forEach(element => {
+        var digi =(255 - (parseInt(element, 16))).toString(16);
+        
+        if (digi.lenght<2){
+            color+="0"+digi;
+        }else{
+            color+=digi;
+        }
+
+    });
 
     console.log('color: ' + color);
     socket.emit('RGBcontrol', {
