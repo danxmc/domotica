@@ -19,10 +19,10 @@ $(".lightBtn").on('click', (e) => {
 });
 
 //RGB control event
-$("#colorPicker").on('change', (e) => {
+$(".colorPicker").on('change', (e) => {
     e.preventDefault;
-
-    let btnRGB = document.getElementById("colorPicker").value;
+    let cpid=event.target.id;
+    let btnRGB = document.getElementById(cpip).value;
     let hexvals = btnRGB.split("#");
     let hexval = hexvals[1].match(/.{1,2}/g);
     let color = "#";
@@ -38,7 +38,9 @@ $("#colorPicker").on('change', (e) => {
 
     console.log('color: ' + color);
     socket.emit('RGBcontrol', {
-        hex: color
+        hex: color,
+        orig: btnRGB,
+        id:cpid
     });
 });
 
@@ -64,3 +66,11 @@ socket.on('inputEvent', (data) => {
     $('#logRoom').append("<p>Se ingresó al cuarto " + time + "</p>");
     //console.log(data);
 });
+
+    //color change listener
+    socket.on('colorChange', (data) => {
+        let id = data.id;
+        let color = data.orig;
+        $('#'+id).value=color;
+        //console.log(data);
+    });

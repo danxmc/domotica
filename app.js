@@ -129,6 +129,7 @@ board.on("ready", () => {
             console.log(data.hex);
             ledRGB.on();
             ledRGB.color(color);
+            socket.broadcast.emit('colorChange', data);
         });
 
         
@@ -140,7 +141,7 @@ board.on("ready", () => {
             //console.log(value);
             if (value == 1) {
                 // if high
-                io.sockets.emit('inputEvent', data)
+                io.sockets.emit('inputEvent', data);
             } else {
                 // if low
             }
