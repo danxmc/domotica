@@ -25,14 +25,13 @@ $("#colorPicker").on('change', (e) => {
     let btnRGB = document.getElementById("colorPicker").value;
     let hexvals = btnRGB.split("#");
     let hexval = hexvals[1].match(/.{1,2}/g);
-    let color ="#";
+    let color = "#";
     hexval.forEach(element => {
-        var digi =(255 - (parseInt(element, 16))).toString(16);
-        
-        if (digi.lenght<2){
-            color+="0"+digi;
-        }else{
-            color+=digi;
+        let digi = (255 - (parseInt(element, 16))).toString(16);
+        if (digi.length < 2) {
+            color += "0" + digi;
+        } else {
+            color += digi;
         }
 
     });
