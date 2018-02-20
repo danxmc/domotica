@@ -5,7 +5,7 @@ let socket = io.connect(window.location.hostname + ':' + 80);
 //Light emitter event
 $(".lightBtn").on('click', (e) => {
     e.preventDefault;
-    let btn = event.target.id;
+    let btn = e.target.id;
     console.log("boton: ", btn);
     let status;
     // Check if button is currently active
@@ -22,7 +22,7 @@ $(".lightBtn").on('click', (e) => {
 $(".colorPicker").on('change', (e) => {
     e.preventDefault;
     //Separates the hex into 3, the RGB values in hex
-    let cpid = event.target.id;
+    let cpid = e.target.id;
     let btnRGB = document.getElementById(cpid).value;
     let hexvals = btnRGB.split("#");
     let hexval = hexvals[1].match(/.{1,2}/g);
