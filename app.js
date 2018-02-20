@@ -125,11 +125,11 @@ board.on("ready", () => {
 
         //RGB control
         socket.on('RGBcontrol', (data)=>{ 
-            let color = data.hex;
-            console.log(data.hex);
+            let color = data.invHex;
+            console.log(color);
             ledRGB.on();
             ledRGB.color(color);
-            socket.broadcast.emit('colorChange', data);
+            socket.broadcast.emit('colorChangeInput', data);
         });
 
         

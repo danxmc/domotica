@@ -21,11 +21,13 @@ $(".lightBtn").on('click', (e) => {
 //RGB control event
 $(".colorPicker").on('change', (e) => {
     e.preventDefault;
-    let cpid=event.target.id;
-    let btnRGB = document.getElementById(cpip).value;
+    //Separates the hex into 3, the RGB values in hex
+    let cpid = event.target.id;
+    let btnRGB = document.getElementById(cpid).value;
     let hexvals = btnRGB.split("#");
     let hexval = hexvals[1].match(/.{1,2}/g);
     let color = "#";
+    // Inverts each hex portion
     hexval.forEach(element => {
         let digi = (255 - (parseInt(element, 16))).toString(16);
         if (digi.length < 2) {
@@ -33,14 +35,14 @@ $(".colorPicker").on('change', (e) => {
         } else {
             color += digi;
         }
-
     });
 
+    // Emitts an event to the server
     console.log('color: ' + color);
     socket.emit('RGBcontrol', {
-        hex: color,
-        orig: btnRGB,
-        id:cpid
+        invHex: color,
+        origHex: btnRGB,
+        id: cpid
     });
 });
 
@@ -67,10 +69,11 @@ socket.on('inputEvent', (data) => {
     //console.log(data);
 });
 
-    //color change listener
-    socket.on('colorChange', (data) => {
-        let id = data.id;
-        let color = data.orig;
-        $('#'+id).value=color;
-        //console.log(data);
-    });
+// Color change listener
+socket.on('colorChangeInput', (data) => {
+    let id = data.id;
+    let color = data.origHex;
+    // Sets the color picker's color to the one the emitter sent
+    $('#' + id).val(color);
+    //console.log(data);
+});
