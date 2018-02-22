@@ -64,8 +64,8 @@ socket.on('toggleBtn', (data) => {
 socket.on('inputEvent', (data) => {
     let dt = new Date();
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    document.getElementById('logRoom').innerHTML = "";
-    $('#logRoom').append("<p>Se ingresó al cuarto " + time + "</p>");
+    //document.getElementById('logRoom').innerHTML = "";
+    $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el "+time+" °C</div>");
     //console.log(data);
 });
 
@@ -77,3 +77,7 @@ socket.on('colorChangeInput', (data) => {
     $('#' + id).val(color);
     //console.log(data);
 });
+socket.on('showtemperature', (data)=> {
+    let temp = data;
+    document.getElementById("temp").innerHTML="<div class='alert alert-warning'>La Temperatura del cuarto es: "+data+" °C</div>";
+})

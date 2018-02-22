@@ -87,13 +87,20 @@ board.on("ready", () => {
 
 
     // Initialize the RGB LED
-    var ledRGB = new five.Led.RGB({
+    let ledRGB = new five.Led.RGB({
         pins: {
             red: 6,
             green: 5,
             blue: 3
         }
     });
+    // Create an analog Thermometer object:
+    let temperature = new five.Thermometer({
+        controller: "LM35",
+        pin: "A0"
+    });
+
+
 
     // Display a conection message
     io.on('connection', (socket) => {
@@ -124,7 +131,8 @@ board.on("ready", () => {
         });
 
         //RGB control
-        socket.on('RGBcontrol', (data)=>{ 
+
+        socket.on('RGBcontrol', (data) => {
             let color = data.invHex;
             console.log(color);
             ledRGB.on();
@@ -132,7 +140,7 @@ board.on("ready", () => {
             socket.broadcast.emit('colorChangeInput', data);
         });
 
-        
+
         //Reads input pin
         inputPin.read((error, value) => {
             let data = {
@@ -142,10 +150,15 @@ board.on("ready", () => {
             if (value == 1) {
                 // if high
                 io.sockets.emit('inputEvent', data);
-            } else {
-                // if low
             }
         });
+
+
+        temperature.on("change", () => {
+           // console.log(temperature.celsius + "°C", this.fahrenheit + "°F");
+            io.sockets.emit('showtemperature', temperature.celsius);
+        });
+
 
     });
 
