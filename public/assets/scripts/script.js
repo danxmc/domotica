@@ -1,7 +1,7 @@
 // Make connection
 let socket = io.connect(window.location.hostname + ':' + 80);
 
-// Event emitters
+/* Event emitters */
 //Light emitter event
 $(".lightBtn").on('click', (e) => {
     e.preventDefault;
@@ -46,7 +46,7 @@ $(".colorPicker").on('change', (e) => {
     });
 });
 
-// Event listeners
+/* Event listeners */
 // Light class button listener
 socket.on('toggleBtn', (data) => {
     console.log('listener status:', data.status);
@@ -65,7 +65,7 @@ socket.on('inputEvent', (data) => {
     let dt = new Date();
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     //document.getElementById('logRoom').innerHTML = "";
-    $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el "+time+" °C</div>");
+    $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el " + time + " °C</div>");
     //console.log(data);
 });
 
@@ -77,7 +77,9 @@ socket.on('colorChangeInput', (data) => {
     $('#' + id).val(color);
     //console.log(data);
 });
-socket.on('showtemperature', (data)=> {
-    let temp = data;
-    document.getElementById("temp").innerHTML="<div class='alert alert-warning'>La Temperatura del cuarto es: "+data+" °C</div>";
+
+// Temperature listener
+socket.on('showtemperature', (temp)=> {
+    //console.log(temp);
+    document.getElementById("temp").innerHTML = "<div class='alert alert-warning'>La temperatura del cuarto es: " + temp.C + "°C / " + temp.F + "°F / " + temp.K + "°K</div>";
 })

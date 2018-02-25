@@ -85,22 +85,22 @@ board.on("ready", () => {
 
     let inputPin = new five.Pin(2);
 
-
     // Initialize the RGB LED
     let ledRGB = new five.Led.RGB({
         pins: {
             red: 6,
             green: 5,
             blue: 3
-        }
+        },
+        isAnode: true
     });
+
     // Create an analog Thermometer object:
     let temperature = new five.Thermometer({
         controller: "LM35",
-        pin: "A0"
+        pin: "A0",
+        freq: 2 * 1000
     });
-
-
 
     // Display a conection message
     io.on('connection', (socket) => {
@@ -117,31 +117,33 @@ board.on("ready", () => {
             let no = data.btnNum;
             // Checks the status sent by the toggleLight event
             //data.status ? led.high() : led.low();
-            // data.status ? five.Pin.write(led, 1) : five.Pin.write(led, 0);
-            pinArray[no].query((state) => {
-                console.log(state);
-            });
+            //data.status ? five.Pin.write(led, 1) : five.Pin.write(led, 0);
+            
             //data.status ? led.on() : led.off();
 
             data.status ? pinArray[no].high() : pinArray[no].low();
 
+            pinArray[no].query((state) => {
+                console.log(state);
+            });
+            console.log(data);
+
             // Emit toggleBtn event on all devices except the one that made the original toggleLight event
             socket.broadcast.emit('toggleBtn', data);
-            console.log(data);
         });
 
-        //RGB control
-
+        // RGB control
         socket.on('RGBcontrol', (data) => {
-            let color = data.invHex;
+            let color = data.origHex;
             console.log(color);
             ledRGB.on();
             ledRGB.color(color);
+
+            // Emit colorChangeInput event on all devices except the one that made the original RGBcontrol event
             socket.broadcast.emit('colorChangeInput', data);
         });
 
-
-        //Reads input pin
+        // Reads input pin
         inputPin.read((error, value) => {
             let data = {
                 value: value
@@ -153,10 +155,16 @@ board.on("ready", () => {
             }
         });
 
-
-        temperature.on("change", () => {
-           // console.log(temperature.celsius + "°C", this.fahrenheit + "°F");
-            io.sockets.emit('showtemperature', temperature.celsius);
+        // Reads the thermometer
+        temperature.on("data", () => {
+            //console.log(temperature.C + "°C", temperature.F + "°F", temperature.K + "°K");
+            let temp = {
+                C: temperature.C,
+                F: temperature.F,
+                K: temperature.K
+            };
+            // Emits the showTemperature event to all devices
+            io.sockets.emit('showtemperature', temp);
         });
 
 
