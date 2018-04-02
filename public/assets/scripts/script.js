@@ -67,7 +67,14 @@ socket.on('inputEvent', () => {
     //document.getElementById('logRoom').innerHTML = "";
     $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el " + time + "</div>");
     //console.log(data);
+
     document.getElementById("soundAlert").play();
+
+    // Emitts an event to the server
+    socket.emit('RGBcontrol', {
+        origHex: "#FF0000"
+    });
+    $('#CP1').val("#FF0000");
 });
 
 // Color change listener
