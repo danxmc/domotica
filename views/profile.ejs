@@ -29,7 +29,7 @@
                     <li>
                         <a href="#">Admin</a>
                     </li>
-                    <% } %>
+                        <% } %>
                     <li>
                         <a href="#">Luces</a>
                     </li>
@@ -101,31 +101,32 @@
             </div>
         <% } %>
            
-            <div class="row section" id="Luces" >
-                    <div class="col-md-4">
-                            <p>sección luces</p>
-                        
-                            <input class="colorPicker" id="CP1" type="color" value="#ffffff">
-                            <div id="temp">
-                                
-                            </div>
-                            <button id="3" type="button" class="btn btn-outline-info lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Aire acondicionado</button>
-                        </div>
+            <div class="row section" id="Luces">
+                <div class="col-md-4">
+                    <p>sección luces</p>
+            
+                    <input class="colorPicker" id="CP1" type="color" value="#ffffff">
+            
+                    <div id="temp"></div>
+            
+                    <button id="3" type="button" class="btn btn-outline-info lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Aire acondicionado</button>
+                </div>
                 <div class="portrait col-md-8">
                     <img src="/assets/images/classroom.jpg" class="image">
                     <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz1</button>
                     <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz2</button>
                     <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz3</button>
                 </div>
-                
-                
+            
             </div>
             <div class="row section" id="LiveStream">
                 <p>sección livestream</p>
             </div>
             <div class="row section" id="Registro">
-                <div class="col-md-offset-2 col-md-8 well" id="logRoom">
-                </div>
+                <audio id="soundAlert">
+                    <source src="/assets/sounds/alert.mp3" type="audio/mp3">
+                </audio>
+                <div class="col-md-offset-2 col-md-8 well" id="logRoom"></div>
             </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

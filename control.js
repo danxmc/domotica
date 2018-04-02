@@ -18,7 +18,8 @@ module.exports = (server) => {
         pinArray[1] = new five.Pin(11);
         pinArray[2] = new five.Pin(10);
         pinArray[3] = new five.Pin(9);
-        let inputPin = new five.Pin(2);
+        pinArray[4] = new five.Pin(8);
+        let button = new five.Button(2);
 
         // Initialize the RGB LED
         let ledRGB = new five.Led.RGB({
@@ -56,7 +57,7 @@ module.exports = (server) => {
 
                 //data.status ? led.on() : led.off();
                 if (no == '3') {
-                    infraredSignal(no);
+                    infraredSignal(data);
                 } else {
                     data.status ? pinArray[no].high() : pinArray[no].low();
 
@@ -83,15 +84,8 @@ module.exports = (server) => {
             });
 
             // Reads input pin
-            inputPin.read((error, value) => {
-                let data = {
-                    value: value
-                };
-                //console.log(value);
-                if (value == 1) {
-                    // if high
-                    io.sockets.emit('inputEvent', data);
-                }
+            button.on('down', () => {
+                io.sockets.emit('inputEvent');
             });
 
             // Reads the thermometer
@@ -105,564 +99,17 @@ module.exports = (server) => {
                 // Emits the showTemperature event to all devices
                 io.sockets.emit('showtemperature', temp);
             });
-            function infraredSignal(sno) {
-                let pinif = pinArray[sno];
-                pinif.high();
-                setTimeout(() => {
-                    pinif.low();
-                }, 4);
-                setTimeout(() => {
-                    pinif.high();
-                }, 2);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .1);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
 
-                console.log("clima control activado");
-
-                function apagar() {
-                    let pinif = pinArray[sno];
-                pinif.high();
-                setTimeout(() => {
-                    pinif.low();
-                }, 4);
-                setTimeout(() => {
-                    pinif.high();
-                }, 2);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .1);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 0.5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, 1);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-                setTimeout(() => {
-                    pinif.high();
-                }, .5);
-                setTimeout(() => {
-                    pinif.low();
-                }, .5);
-
+            function infraredSignal(data) {
+                let pinOn = pinArray[3];
+                let pinOff = pinArray[4];
+                if (data.status) {
+                    pinArray[3].high();
+                    pinArray[3].low();
+                } else {
+                    pinArray[4].high();
+                    pinArray[4].low();
                 }
-
             }
 
         });
@@ -670,3 +117,282 @@ module.exports = (server) => {
     });
 
 }
+/*
+                setTimeout(() => {
+                    pinif.low();
+                    console.log("4");
+                }, 50);
+
+                setTimeout(() => {
+                    pinif.high();
+                    console.log("5");
+                }, 10);
+               
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .1);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, 1);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+                setTimeout(() => {
+                    pinif.high();
+                }, .5);
+                setTimeout(() => {
+                    pinif.low();
+                }, .5);
+*/

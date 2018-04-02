@@ -61,12 +61,13 @@ socket.on('toggleBtn', (data) => {
 });
 
 // Input pin listener
-socket.on('inputEvent', (data) => {
+socket.on('inputEvent', () => {
     let dt = new Date();
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     //document.getElementById('logRoom').innerHTML = "";
-    $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el " + time + " °C</div>");
+    $('#logRoom').prepend("<div class='alert alert-info'>Se ingresó al cuarto el " + time + "</div>");
     //console.log(data);
+    document.getElementById("soundAlert").play();
 });
 
 // Color change listener
