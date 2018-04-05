@@ -27,7 +27,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="menu">
+            <ul class="navbar-nav mr-auto" id="menu">
             <% if(user.local.role == "ROLE_ADMIN") { %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin</a>
@@ -44,14 +44,12 @@
                 </li>
             </ul>
 
-            <ul class="nav nav-pills">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-user"></span> Perfil</a>
+                    <a class="nav-link"><span class="glyphicon glyphicon-user"></span> Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/logout">
-                        <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    <a href="/logout" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                 </li>
             </ul>
         </div>
@@ -76,7 +74,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>Email</th>
-                                <th>Rol</th>
+                                <th>Role</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -91,7 +89,7 @@
                                 </td>
                                 <td>
                                     <form action="/delete/<%= delUser._id %>" method="POST">
-                                        <button type="submit" id="delete">
+                                        <button type="submit" class="btn btn-danger" id="delete">
                                             <span class="fa fa-trash"></span>
                                         </button>
                                     </form>
