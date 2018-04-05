@@ -22,14 +22,14 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Tu casa</a>
+                    <a class="navbar-brand" href="#">Home</a>
                 </div>
                 <ul class="nav navbar-nav" id="menu">
-                        <% if(user.local.role == "ROLE_ADMIN") { %>
+                    <% if(user.local.role == "ROLE_ADMIN") { %>
                     <li>
                         <a href="#">Admin</a>
                     </li>
-                        <% } %>
+                    <% } %>
                     <li>
                         <a href="#">Luces</a>
                     </li>
@@ -58,75 +58,79 @@
         </div>
 
         <% if(user.local.role == "ROLE_ADMIN") { %>
-            <div class="row section" id="Admin" style="display:inline">
-                <div class="row">
-                    <h1>Usuario</h1>
-                    <a class="btn btn-outline-primary" href="./signup" role="button">Add User <span class="fa fa-plus-circle"></span></a>
-                </div>
-                <div clas="row ">
-                    <div clas="well col-md-6">
-                        <table class="table table-striped" style="width:70%">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Email</th>
-                                    <th>Rol</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% users.forEach((delUser) => { %>
-                                    <tr>
-                                        <td>
-                                            <%= delUser.local.email %>
-                                        </td>
-                                        <td>
-                                            <%= delUser.local.role %>
-                                        </td>
-                                        <td>
-                                            <form action="/delete/<%= delUser._id %>" method="POST">
-                                                <button type="submit" id="delete">
-                                                    <span class="fa fa-trash"></span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-
-                                <% }) %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
+        <div class="row section" id="Admin" style="display:inline">
+            <div class="row">
+                <h1>Usuario</h1>
+                <a class="btn btn-outline-primary" href="./signup" role="button">Add User
+                    <span class="fa fa-plus-circle"></span>
+                </a>
             </div>
+            <div clas="row ">
+                <div clas="well col-md-6">
+                    <table class="table table-striped" style="width:70%">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <% users.forEach((delUser) => { %>
+                            <tr>
+                                <td>
+                                <%= delUser.local.email %>
+                                </td>
+                                <td>
+                                <%= delUser.local.role %>
+                                </td>
+                                <td>
+                                    <form action="/delete/<%= delUser._id %>" method="POST">
+                                        <button type="submit" id="delete">
+                                            <span class="fa fa-trash"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>    
+                        <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
         <% } %>
-           
-            <div class="row section" id="Luces">
-                <div class="col-md-4">
-                    <p>sección luces</p>
-            
-                    <input class="colorPicker" id="CP1" type="color" value="#ffffff">
-            
-                    <div id="temp"></div>
-            
-                    <button id="3" type="button" class="btn btn-outline-info lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Aire acondicionado</button>
-                </div>
-                <div class="portrait col-md-8">
-                    <img src="/assets/images/classroom.jpg" class="image">
-                    <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz1</button>
-                    <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz2</button>
-                    <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz3</button>
-                </div>
-            
+
+        <div class="row section" id="Luces">
+            <div class="col-md-4">
+                <p>sección luces</p>
+                
+                <input class="colorPicker" id="CP1" type="color" value="#ffffff">
+                
+                <div id="temp"></div>
+
             </div>
-            <div class="row section" id="LiveStream">
-                <p>sección livestream</p>
+
+            <div class="portrait col-md-8">
+                <img src="/assets/images/classroom.jpg" class="image">
+                <button id="0" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">Luz1</button>
+                <button id="1" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz2</button>
+                <button id="2" type="button" class="btn btn-primary lightBtn" data-toggle="button" aria-pressed="false" autocomplete="off">luz3</button>
             </div>
-            <div class="row section" id="Registro">
-                <audio id="soundAlert">
-                    <source src="/assets/sounds/alert.mp3" type="audio/mp3">
-                </audio>
-                <div class="col-md-offset-2 col-md-8 well" id="logRoom"></div>
-            </div>
+            
+        </div>
+
+        <div class="row section" id="LiveStream">
+            <p>sección livestream</p>
+        </div>
+
+        <div class="row section" id="Registro">
+            <audio id="soundAlert">
+                <source src="/assets/sounds/alert.mp3" type="audio/mp3">
+            </audio>
+            <div class="col-md-offset-2 col-md-8 well" id="logRoom"></div>
+        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -149,7 +153,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>
