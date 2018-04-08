@@ -1,3 +1,7 @@
+#preview {
+    display: none;
+}
+
 [id='0']{
     position: absolute;
    top: 30%;

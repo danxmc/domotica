@@ -47,6 +47,11 @@ $(".colorPicker").on('change', (e) => {
 });
 
 /* Event listeners */
+// Listen for stream
+socket.on("playStream", (image) => {
+    document.getElementById("play").src = image;
+});
+
 // Light class button listener
 socket.on('toggleBtn', (data) => {
     console.log('listener status:', data.status);

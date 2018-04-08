@@ -46,6 +46,12 @@ module.exports = (server) => {
                 console.log('Socket.io disconnection:', socket.id);
             });
 
+            // Stream
+            socket.on('stream', (image) => {
+                //console.log(image);
+                io.sockets.emit('playStream', image);
+            });
+
             // Receives signal and toggles the appropriate Pin, broadcast's toggle signal to clients
             socket.on('toggleLight', (data) => {
                 let no = data.btnNum;

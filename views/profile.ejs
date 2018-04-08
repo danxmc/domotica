@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Domotics - WebSockets</title>
     <script src="./socket.io/socket.io.js"></script>
+    <script src="./assets/scripts/stream.js"></script>
     <link rel="stylesheet" href="./assets/css/domotica.css" type="text/css">
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -61,7 +62,7 @@
         </div>
 
         <% if(user.local.role == "ROLE_ADMIN") { %>
-        <div class="row section" id="Admin" style="display:inline">
+        <div class="row section" id="Admin" >
             <div class="row">
                 <h1>Usuario</h1>
                 <a class="btn btn-outline-primary" href="./signup" role="button">Add User
@@ -101,6 +102,17 @@
                 </div>
             </div>
 
+            <div class="row" onload="">
+                <div clas="well col-md-6">
+                    <p>Streaming:</p>
+                    <video src="" id="video" autoplay="true"></video>
+                    <canvas id="preview"></canvas>
+                    <script type="text/javascript">
+                        setupStream();
+                    </script>
+                </div>
+            </div>
+
         </div>
         <% } %>
 
@@ -124,7 +136,7 @@
         </div>
 
         <div class="row section" id="LiveStream">
-            <p>sección livestream</p>
+            <img id="play" class="img-fluid rounded mx-auto d-block">
         </div>
 
         <div class="row section" id="Registro">
