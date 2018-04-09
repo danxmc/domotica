@@ -1,7 +1,10 @@
 let io = require('socket.io');
 let five = require("johnny-five");
-
+let fs = require('fs');
+let file = fs.createWriteStream('log.txt');
 module.exports = (server) => {
+
+    
     // Create board instance
     let board = new five.Board();
 
@@ -89,6 +92,13 @@ module.exports = (server) => {
             // Reads input pin
             button.on('down', () => {
                 io.sockets.emit('inputEvent');
+                let dt = new Date();
+    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                
+file.on('error', function(err) { /* error handling */ });
+let entrada = "Se ingresó al cuarto el " + time ;
+file.writeFile(entrada + '\n');
+file.end();
             });
 
             // Reads the thermometer

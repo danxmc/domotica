@@ -17,7 +17,7 @@ function setupStream() {
 
     setInterval(() => {
         viewVideo(video, context, canvas);
-    }, 1000);
+    }, 70);
 }
 
 function loadCam(stream) {

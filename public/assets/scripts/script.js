@@ -79,6 +79,7 @@ socket.on('inputEvent', () => {
     socket.emit('RGBcontrol', {
         origHex: "#FF0000"
     });
+    
     $('#CP1').val("#FF0000");
 });
 
