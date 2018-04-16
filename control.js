@@ -1,10 +1,7 @@
 let io = require('socket.io');
 let five = require("johnny-five");
-let fs = require('fs');
-let file = fs.createWriteStream('log.txt');
-module.exports = (server) => {
 
-    
+module.exports = (server) => {
     // Create board instance
     let board = new five.Board();
 
@@ -63,19 +60,15 @@ module.exports = (server) => {
                 //data.status ? five.Pin.write(led, 1) : five.Pin.write(led, 0);
 
                 //data.status ? led.on() : led.off();
-                if (no == '3') {
-                    infraredSignal(data);
-                } else {
-                    data.status ? pinArray[no].high() : pinArray[no].low();
+                data.status ? pinArray[no].high() : pinArray[no].low();
 
-                    pinArray[no].query((state) => {
-                        console.log(state);
-                    });
-                    console.log(data);
-                }
+                pinArray[no].query((state) => {
+                    console.log(state);
+                });
+                console.log(data);
 
-                // Emit toggleBtn event on all devices except the one that made the original toggleLight event
-                socket.broadcast.emit('toggleBtn', data);
+                // Emit toggleBtn event on all devices
+                io.sockets.emit('toggleBtn', data);
             });
 
             // RGB control
@@ -85,20 +78,13 @@ module.exports = (server) => {
                 ledRGB.on();
                 ledRGB.color(color);
 
-                // Emit colorChangeInput event on all devices except the one that made the original RGBcontrol event
-                socket.broadcast.emit('colorChangeInput', data);
+                // Emit colorChangeInput event on all devices
+                io.sockets.emit('colorChangeInput', data);
             });
 
             // Reads input pin
             button.on('down', () => {
                 io.sockets.emit('inputEvent');
-                let dt = new Date();
-    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-                
-file.on('error', function(err) { /* error handling */ });
-let entrada = "Se ingresó al cuarto el " + time ;
-file.writeFile(entrada + '\n');
-file.end();
             });
 
             // Reads the thermometer

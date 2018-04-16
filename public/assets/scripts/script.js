@@ -59,9 +59,11 @@ socket.on('toggleBtn', (data) => {
     if (data.status == true) {
         $('#' + data.btnNum).attr('aria-pressed', 'true');
         $('#' + data.btnNum).addClass('active');
+        document.getElementById("soundON" + data.btnNum).play();
     } else {
         $('#' + data.btnNum).attr('aria-pressed', 'false');
         $('#' + data.btnNum).removeClass('active');
+        document.getElementById("soundOFF" + data.btnNum).play();
     }
 });
 
@@ -79,7 +81,6 @@ socket.on('inputEvent', () => {
     socket.emit('RGBcontrol', {
         origHex: "#FF0000"
     });
-    
     $('#CP1').val("#FF0000");
 });
 
@@ -87,6 +88,7 @@ socket.on('inputEvent', () => {
 socket.on('colorChangeInput', (data) => {
     let id = data.id;
     let color = data.origHex;
+    document.getElementById("colorChange").play();
     // Sets the color picker's color to the one the emitter sent
     $('#' + id).val(color);
     //console.log(data);
